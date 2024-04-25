@@ -1,0 +1,32 @@
+powersheel
+mkdir MiProyecto
+cd MiProyecto
+code .
+
+visual studio
+git init
+*creo .gitignore
+python -m venv .venv
+*selecciono el interprete venv .venv
+.\.venv\Scripts\activate
+python.exe -m pip install --upgrade pip
+pip install django
+freeze >> requeriments.txt
+mkdir project
+cd project
+django-admin startproject config .
+
+visual studio
+git branch dev
+git checkout dev
+python manage.py startapp Clase
+
+*crear el archivo urls.py en Clase
+
+(hacer cambios en los archivos hasta aca)
+
+visual studio
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
