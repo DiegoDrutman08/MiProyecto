@@ -141,7 +141,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre de la comisión *" required="required" />
+                                    <input class="form-control" id="comision" name="comision" type="text" placeholder="Nombre de la comisión *" required="required" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select class="form-select" id="estudiantes" name="estudiantes" aria-label="Seleccionar estudiantes" multiple required="required">
+                                    <select class="form-select" id="estudiantes" name="estudiantes" aria-label="Seleccionar estudiantes" multiple required="required">  <!-- Corregir el nombre del campo -->
                                         <option selected disabled>Selecciona estudiantes</option>
                                         {% for estudiante in estudiantes %}
                                         <option value="{{ estudiante.id }}">{{ estudiante.nombre }}</option>
@@ -178,15 +178,14 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button id="add-comision-submit" class="btn btn-primary btn-xl text-uppercase" type="submit">Agregar Comisión</button>
+                                <button id="add-comision-submit" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </section>
-    
+    </section>    
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">

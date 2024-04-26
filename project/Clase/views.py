@@ -27,16 +27,15 @@ def agregar_profesor(request):
         return redirect('core:home')
     else:
         return render(request, 'core/base.html')
-    
-from django.shortcuts import render, redirect
-from .models import Curso, Profesor, Estudiante, Comision
 
 def agregar_comision(request):
     if request.method == 'POST':
-        nombre = request.POST.get('nombre')
+        nombre = request.POST.get('comision')
         curso_id = request.POST.get('curso')
         profesor_id = request.POST.get('profesor')
         estudiantes_ids = request.POST.getlist('estudiantes')
+
+        estudiantes_ids = [int(id) for id in estudiantes_ids]
 
         comision = Comision.objects.create(
             nombre=nombre,
@@ -51,7 +50,12 @@ def agregar_comision(request):
         profesores = Profesor.objects.all()
         estudiantes = Estudiante.objects.all()
 
+        print("Cursos:", cursos)
+        print("Profesores:", profesores)
+        print("Estudiantes:", estudiantes)
+
         return render(request, 'core/base.html', {'cursos': cursos, 'profesores': profesores, 'estudiantes': estudiantes})
+
 
 
 
