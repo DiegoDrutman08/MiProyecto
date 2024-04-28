@@ -31,8 +31,8 @@ def agregar_profesor(request):
 def agregar_comision(request):
     if request.method == 'POST':
         nombre = request.POST.get('comision')
-        curso_id = request.POST.get('curso')
-        profesor_id = request.POST.get('profesor')
+        curso_id = request.POST.get('cursos')
+        profesor_id = request.POST.get('profesores')
         estudiantes_ids = request.POST.getlist('estudiantes')
 
         estudiantes_ids = [int(id) for id in estudiantes_ids]
@@ -50,11 +50,7 @@ def agregar_comision(request):
         profesores = Profesor.objects.all()
         estudiantes = Estudiante.objects.all()
 
-        print("Cursos:", cursos)
-        print("Profesores:", profesores)
-        print("Estudiantes:", estudiantes)
-
-        return render(request, 'core/base.html', {'cursos': cursos, 'profesores': profesores, 'estudiantes': estudiantes})
+        return render(request, 'core/agregar_comision.html', {'cursos': cursos, 'profesores': profesores, 'estudiantes': estudiantes})
 
 
 
