@@ -147,7 +147,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select class="form-select" id="curso" name="curso" aria-label="Seleccionar curso" required="required">
+                                    <select class="form-select" id="cursos" name="cursos" aria-label="Seleccionar curso" required="required">
                                         <option selected disabled>Selecciona un curso</option>
                                         {% for curso in cursos %}
                                         <option value="{{ curso.id }}">{{ curso.nombre }}</option>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <select class="form-select" id="profesor" name="profesor" aria-label="Seleccionar profesor" required="required">
+                                    <select class="form-select" id="profesores" name="profesores" aria-label="Seleccionar profesor" required="required">
                                         <option selected disabled>Selecciona un profesor</option>
                                         {% for profesor in profesores %}
                                         <option value="{{ profesor.id }}">{{ profesor.nombre }}</option>
