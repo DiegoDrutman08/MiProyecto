@@ -1,10 +1,12 @@
 # Proyecto CoderHouse
 
-Comision:
+Comision: 54135
 
-Alumno: 
+Alumno: Diego Drutman
 
 ## Acerca del proyecto
+
+Pagina Web Intermedia
 
 ## Aplicaciones
 
