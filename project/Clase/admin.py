@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from . import models
 
-admin.site.register(models.Curso)
-admin.site.register(models.Estudiante)
-admin.site.register(models.Profesor)
-admin.site.register(models.Comision)
+admin.site.register(models.Producto)
+admin.site.register(models.Cliente)
+admin.site.register(models.Vendedor)
+admin.site.register(models.Pedido)

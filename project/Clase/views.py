@@ -1,58 +1,58 @@
 from django.shortcuts import render, redirect
-from .models import Curso, Estudiante, Profesor, Comision
+from .models import Producto, Cliente, Vendedor, Pedido
 
 def home(request):
     return render(request, "core/base.html")
 
-def agregar_curso(request):
+def agregar_producto(request):
     if request.method == 'POST':
-        nombre_curso = request.POST.get('curso')
-        Curso.objects.create(nombre=nombre_curso)
+        nombre_producto = request.POST.get('producto')
+        Producto.objects.create(nombre=nombre_producto)
         return redirect('core:home')
     else:
         return render(request, 'core/base.html')
 
-def agregar_estudiante(request):
+def agregar_cliente(request):
     if request.method == 'POST':
-        nombre_estudiante = request.POST.get('estudiante')
-        Estudiante.objects.create(nombre=nombre_estudiante)
+        nombre_cliente = request.POST.get('cliente')
+        Cliente.objects.create(nombre=nombre_cliente)
         return redirect('core:home')
     else:
         return render(request, 'core/base.html')
 
-def agregar_profesor(request):
+def agregar_vendedor(request):
     if request.method == 'POST':
-        nombre_profesor = request.POST.get('profesor')
-        edad_profesor = request.POST.get('edad')
-        Profesor.objects.create(nombre=nombre_profesor)
-        Profesor.objects.create(edad=edad_profesor)
-        return redirect('core:home')
+        nombre_vendedor = request.POST.get('vendedor')
+        edad_vendedor = request.POST.get('edad')
+        if nombre_vendedor and edad_vendedor:
+            Vendedor.objects.create(nombre=nombre_vendedor, edad=edad_vendedor)
+            return redirect('core:home')
+        else:
+            return render(request, 'core/error.html', {'message': 'El nombre y la edad del vendedor son obligatorios'})
     else:
         return render(request, 'core/base.html')
 
-def agregar_comision(request):
+def agregar_pedido(request):
     if request.method == 'POST':
-        nombre = request.POST.get('comision')
-        curso_id = request.POST.get('cursos')
-        profesor_id = request.POST.get('profesores')
-        estudiantes_ids = request.POST.getlist('estudiantes')
+        codigo = request.POST.get('codigo')
+        producto_id = request.POST.get('productos')
+        vendedor_id = request.POST.get('vendedores')
+        cliente_id = request.POST.get('clientes')
 
-        estudiantes_ids = [int(id) for id in estudiantes_ids]
-
-        comision = Comision.objects.create(
-            nombre=nombre,
-            curso=Curso.objects.get(id=curso_id),
-            profesor=Profesor.objects.get(id=profesor_id)
+        pedido = Pedido.objects.create(
+            codigo=codigo,
+            producto=Producto.objects.get(id=producto_id),
+            vendedor=Vendedor.objects.get(id=vendedor_id),
+            cliente=Cliente.objects.get(id=cliente_id)
         )
-        comision.estudiante.set(estudiantes_ids)
 
         return redirect('core:home')
     else:
-        cursos = Curso.objects.all()
-        profesores = Profesor.objects.all()
-        estudiantes = Estudiante.objects.all()
+        productos = Producto.objects.all()
+        vendedores = Vendedor.objects.all()
+        clientes = Cliente.objects.all()
 
-        return render(request, 'core/agregar_comision.html', {'cursos': cursos, 'profesores': profesores, 'estudiantes': estudiantes})
+        return render(request, 'core/agregar_pedido.html', {'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
 
 
 

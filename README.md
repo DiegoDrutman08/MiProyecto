@@ -1,6 +1,6 @@
 # Proyecto CoderHouse
 
-Comision: 54135
+Pedido: 54135
 
 Alumno: Diego Drutman
 
