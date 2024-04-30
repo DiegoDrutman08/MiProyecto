@@ -28,7 +28,7 @@ def agregar_vendedor(request):
             Vendedor.objects.create(nombre=nombre_vendedor, edad=edad_vendedor)
             return redirect('core:home')
         else:
-            return render(request, 'core/error.html', {'message': 'El nombre y la edad del vendedor son obligatorios'})
+            return render(request, 'core/base.html', {'message': 'El nombre y la edad del vendedor son obligatorios'})
     else:
         return render(request, 'core/base.html')
 
@@ -38,22 +38,30 @@ def agregar_pedido(request):
         producto_id = request.POST.get('productos')
         vendedor_id = request.POST.get('vendedores')
         cliente_id = request.POST.get('clientes')
+        try:
+            producto = Producto.objects.get(id=producto_id)
+        except Producto.DoesNotExist:
+            producto = None
+        try:
+            vendedor = Vendedor.objects.get(id=vendedor_id)
+        except Vendedor.DoesNotExist:
+            vendedor = None
+        try:
+            cliente = Cliente.objects.get(id=cliente_id)
+        except Cliente.DoesNotExist:
+            cliente = None
 
-        pedido = Pedido.objects.create(
-            codigo=codigo,
-            producto=Producto.objects.get(id=producto_id),
-            vendedor=Vendedor.objects.get(id=vendedor_id),
-            cliente=Cliente.objects.get(id=cliente_id)
-        )
-
-        return redirect('core:home')
+        if producto and vendedor and cliente:
+            pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
+            return redirect('Clase:agregar_pedido')
+        else:
+            error_message = "Uno o más objetos no existen"
+            productos = Producto.objects.all()
+            vendedores = Vendedor.objects.all()
+            clientes = Cliente.objects.all()
+            return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
     else:
         productos = Producto.objects.all()
         vendedores = Vendedor.objects.all()
         clientes = Cliente.objects.all()
-
         return render(request, 'core/agregar_pedido.html', {'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
-
-
-
-
