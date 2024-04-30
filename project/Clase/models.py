@@ -14,6 +14,7 @@ class Estudiante(models.Model):
 
 class Profesor(models.Model):
     nombre = models.CharField(max_length=100)
+    edad = models.IntegerField(default=0)
     
     def __str__(self):
         return self.nombre

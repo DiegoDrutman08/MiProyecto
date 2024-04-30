@@ -23,7 +23,9 @@ def agregar_estudiante(request):
 def agregar_profesor(request):
     if request.method == 'POST':
         nombre_profesor = request.POST.get('profesor')
+        edad_profesor = request.POST.get('edad')
         Profesor.objects.create(nombre=nombre_profesor)
+        Profesor.objects.create(edad=edad_profesor)
         return redirect('core:home')
     else:
         return render(request, 'core/base.html')

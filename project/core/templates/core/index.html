@@ -101,9 +101,15 @@
                 <form id="add-profesor-form" action="{% url 'Clase:agregar_profesor' %}" method="POST">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" id="profesor" name="profesor" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Please enter your name." />
+                                <input class="form-control" id="profesor" name="profesor" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Por favor ingresa el nombre." />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" id="edad" name="edad" type="number" placeholder="Edad" />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -117,7 +123,7 @@
             </div>
         </div>
     </div>
-</section>        
+</section> 
 <!-- Comisiones-->
 <section class="page-section bg-light" id="comision">
     <div class="container">
