@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db import IntegrityError
 from .models import Producto, Cliente, Vendedor, Pedido
 
 def home(request):
@@ -38,28 +39,29 @@ def agregar_pedido(request):
         producto_id = request.POST.get('productos')
         vendedor_id = request.POST.get('vendedores')
         cliente_id = request.POST.get('clientes')
+        
         try:
             producto = Producto.objects.get(id=producto_id)
-        except Producto.DoesNotExist:
-            producto = None
-        try:
             vendedor = Vendedor.objects.get(id=vendedor_id)
-        except Vendedor.DoesNotExist:
-            vendedor = None
-        try:
             cliente = Cliente.objects.get(id=cliente_id)
-        except Cliente.DoesNotExist:
-            cliente = None
-
-        if producto and vendedor and cliente:
-            pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
-            return redirect('Clase:agregar_pedido')
-        else:
+            
+            # Verificar si el código ya existe en la base de datos
+            while True:
+                try:
+                    pedido = Pedido.objects.create(codigo=codigo, producto=producto, vendedor=vendedor, cliente=cliente)
+                    break
+                except IntegrityError:
+                    # Generar un nuevo código si el actual ya existe
+                    codigo += "_1"  # Puedes modificar esto según tu lógica de generación de códigos
+        except (Producto.DoesNotExist, Vendedor.DoesNotExist, Cliente.DoesNotExist):
             error_message = "Uno o más objetos no existen"
             productos = Producto.objects.all()
             vendedores = Vendedor.objects.all()
             clientes = Cliente.objects.all()
             return render(request, 'core/agregar_pedido.html', {'error_message': error_message, 'productos': productos, 'vendedores': vendedores, 'clientes': clientes})
+        
+        return redirect('core:home')
+    
     else:
         productos = Producto.objects.all()
         vendedores = Vendedor.objects.all()
