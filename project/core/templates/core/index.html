@@ -8,6 +8,8 @@
     {% if user.is_authenticated %}
         {{ mensaje }}
     {% endif %}
+    <!-- Responsive navbar-->
+    {% include 'core/components/navbar.html' %}
     <!-- Header-->
     <header class="masthead">
         <div class="container">
@@ -109,7 +111,7 @@
             </div>
         </div>
     </section> 
-    <!-- Pedidoes-->
+    <!-- Pedidos-->
     <section class="page-section bg-light" id="pedido">
         <div class="container">
             <div class="text-center">
@@ -118,7 +120,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-2">
-                    <form action="{% url 'clase:agregar_pedido' %}" method="POST"> <!-- Cambiado de GET a POST -->
+                    <form action="{% url 'clase:agregar_pedido' %}" method="POST">
                         {% csrf_token %}
                         <button class="btn btn-primary btn-xl text-uppercase" type="submit">Agregar Pedido</button>
                     </form>
