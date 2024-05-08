@@ -21,9 +21,9 @@ django-admin startproject config .
 visual studio
 git branch dev
 git checkout dev
-python manage.py startapp Clase
+python manage.py startapp clase
 
-*crear el archivo urls.py en Clase
+*crear el archivo urls.py en clase
 
 (hacer cambios en los archivos hasta aca)
 
@@ -35,7 +35,7 @@ python manage.py runserver
 python manage.py startapp core
 
 *crear la carpeta templates en core y dentro de ella otra carpeta llamada core, dentro de esa el archivo index.html
-*hacer lo mismo en Clase
+*hacer lo mismo en clase
 *crear en la misma carpeta de core base.html
 
 
