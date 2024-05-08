@@ -6,7 +6,7 @@ from django.shortcuts import render
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 
-# @login_required
+@login_required
 def home(request):
     return render(request, "core/index.html")
 
