@@ -38,4 +38,4 @@ python manage.py startapp core
 *hacer lo mismo en clase
 *crear en la misma carpeta de core base.html
 
-
+Si hay dos personas que compran el mismo producto al mismo tiempo, como se maneja.
