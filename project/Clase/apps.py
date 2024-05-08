@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-class ClaseConfig(AppConfig):
+class claseConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Clase'
+    name = 'clase'

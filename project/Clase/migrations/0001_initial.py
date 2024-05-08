@@ -38,9 +38,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.PositiveIntegerField(unique=True)),
-                ('producto', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='Clase.producto')),
-                ('cliente', models.ManyToManyField(to='Clase.cliente')),
-                ('vendedor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='Clase.vendedor')),
+                ('producto', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='clase.producto')),
+                ('cliente', models.ManyToManyField(to='clase.cliente')),
+                ('vendedor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='clase.vendedor')),
             ],
         ),
     ]

@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bxnv893ypynoa9#d&+pd842kuae^wx!ku*#xx5)3muv&+0i(ow'
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'Clase',
+    'clase',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "core/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +125,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = reverse_lazy("core:login")
+LOGIN_REDIRECT_URL = reverse_lazy("core:home")
